@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Postagem</title>
+</head>
+
+<body onload="exibir()">
+    <div id="div_publicacoes">
+
+    </div>
+
+</body>
+
+</html>
+<script>
+    function exibir() {
+        fetch("/postagens").then(function (resposta) {
+            resposta.json().then(function (resposta) {
+                var div = document.getElementById("div_publicacoes");
+                var publicacoes = resposta.data;
+                for (i = 0; i < publicacoes.length; i++) {
+                    div.innerHTML += `<h1> ${publicacoes[i].titulo}</h1> 
+                                 <div>${publicacoes[i].corpo}</div> <br> <hr>`;
+                }
+            })
+
+        });
+    }
+
+</script>
